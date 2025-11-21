@@ -1,52 +1,84 @@
+
 <template>
   <div class="Contain">
+
     <div class="Topbar">
       <div class="column left">
         <h1>Game Energy | Computer Electricity Tracker</h1>
       </div>
-      <div class="column right">
-        <nav>
-          <RouterLink to="/Login">Login Here</RouterLink>
-        </nav>
-      </div>
     </div>
 
-    <nav class="bar">
-      <RouterLink to="/Points">Points</RouterLink>
-      <RouterLink to="/Help">Help & FAQ</RouterLink>
-    </nav>
 
-    <!-- Figma section -->
     <div class="desktop-1-1">
+
+ 
       <div class="rectangle-1-2"></div>
-      <p class="text-3"><span class="text-white">20 g/kw</span></p>
-      <div class="rectangle-2-4"></div>
-      <div class="rectangle-3-5"></div>
-      <div class="rectangle-5-6"></div>
-      <p class="text-7"><span class="text-white">Avg usage: 18 g/kw</span></p>
-      <p class="text-8"><span class="text-white">Save 1000 g/kw this week</span></p>
-      <p class="text-9"><span class="text-white">Weekly usage: 18 g/kw</span></p>
+
+
+      <p class="text-3">
+        <span class="text-white">
+          {{ stats.avg_total_kwh?.toFixed(4) || "…" }} kWh
+        </span>
+      </p>
+      <p class="text-7">
+        <span class="text-white">
+          Avg CPU Usage: {{ stats.avg_cpu?.toFixed(1) || "…" }}%
+        </span>
+      </p>
+
+ 
+      <p class="text-8">
+        <span class="text-white">
+          Avg GPU Usage: {{ stats.avg_gpu?.toFixed(1) || "…" }}%
+        </span>
+      </p>
+
+
+      <p class="text-9">
+        <span class="text-white"></span>
+      </p>
+
       <div class="rectangle-6-10"></div>
       <div class="rectangle-7-11"></div>
-      <p class="text-12"><span class="text-white">GOAL:</span></p>
+
+      <p class="text-12">
+        <span class="text-white">GOAL:</span>
+      </p>
+
     </div>
   </div>
 </template>
 
 <script setup>
-// No JS needed yet
+import { ref, onMounted } from "vue"
+import axios from "axios"
+
+const stats = ref({})
+
+async function fetchStats() {
+  try {
+    const res = await axios.get("http://localhost:8000/stats/latest")
+    stats.value = res.data || {}
+  } catch (err) {
+    console.error("Failed to fetch stats:", err)
+  }
+}
+
+onMounted(() => {
+  fetchStats()
+  setInterval(fetchStats, 3000)
+})
 </script>
 
 <style scoped>
 html, body {
-  margin: 0;
   padding: 0;
   background-color: #1c1f27;
 }
 .Contain {
   background-color: #1c1f27;
   min-height: 100vh;
-  width: 100vw; /* Make sure it covers full width */
+  width: 100vw; 
   overflow-x: hidden;
 }
 @font-face {
@@ -60,7 +92,7 @@ html, body {
 :root {
   --font-family-inter: 'Inter', sans-serif;
   --font-family-nats: 'NATS', sans-serif;
-  #FFFFFF: rgba(255, 255, 255, 1);
+  color: #FFFFFF;
 }
 
 .text-white {
@@ -74,17 +106,17 @@ html, body {
   box-sizing: border-box;
 }
 
-/* MAIN CONTAINER */
+
 .desktop-1-1 {
   position: relative;
   width: 1440px;
   height: 1024px;
-  background: #303848; /* Dark background so white text shows */
+  background: #303848; 
   overflow: hidden;
   margin: 0 auto;
 }
 
-/* RECTANGLES & TEXT: Based on Figma export layering */
+
 .rectangle-1-2 {
   position: absolute;
   left: 80px;
@@ -187,7 +219,7 @@ html, body {
   color: #FFFFFF;
 }
 
-/* TOPBAR + NAV */
+
 .Contain {
   background-color: #242832;
   min-height: 100vh;
