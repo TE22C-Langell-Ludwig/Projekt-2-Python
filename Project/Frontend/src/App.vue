@@ -17,19 +17,19 @@
 
       <p class="text-3">
         <span class="text-white">
-          {{ stats.avg_total_kwh?.toFixed(4) || "…" }} kWh
+          {{ stats.total_kwh?.toFixed(4) || "…" }} kWh
         </span>
       </p>
       <p class="text-7">
         <span class="text-white">
-          Avg CPU Usage: {{ stats.avg_cpu?.toFixed(1) || "…" }}%
+          Avg CPU Usage: {{ stats.cpu_percent?.toFixed(1) || "…" }}%
         </span>
       </p>
 
  
       <p class="text-8">
         <span class="text-white">
-          Avg GPU Usage: {{ stats.avg_gpu?.toFixed(1) || "…" }}%
+          Avg GPU Usage: {{ stats.gpu_percent?.toFixed(1) || "…" }}%
         </span>
       </p>
 
