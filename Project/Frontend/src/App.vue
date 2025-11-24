@@ -20,30 +20,27 @@
           {{ stats.total_kwh?.toFixed(4) || "…" }} kWh
         </span>
       </p>
-      <p class="text-7">
-        <span class="text-white">
-          Avg CPU Usage: {{ stats.cpu_percent?.toFixed(1) || "…" }}%
-        </span>
-      </p>
+            
+      <div class="usage-row">
+        <p class="usage-text">
+          <span class="text-white">
+            Avg CPU Usage: {{ stats.cpu_percent?.toFixed(1) || "…" }}%
+          </span>
+        </p>
 
- 
-      <p class="text-8">
-        <span class="text-white">
-          Avg GPU Usage: {{ stats.gpu_percent?.toFixed(1) || "…" }}%
-        </span>
-      </p>
+        <p class="usage-text">
+          <span class="text-white">
+            Avg GPU Usage: {{ stats.gpu_percent?.toFixed(1) || "…" }}%
+          </span>
+        </p>
+      </div>
+
 
 
       <p class="text-9">
-        <span class="text-white"></span>
+        <span class="text-white">Made by Yousuf and Ludwig</span>
       </p>
 
-      <div class="rectangle-6-10"></div>
-      <div class="rectangle-7-11"></div>
-
-      <p class="text-12">
-        <span class="text-white">GOAL:</span>
-      </p>
 
     </div>
   </div>
@@ -128,7 +125,6 @@ html, body {
 }
 
 .text-3 {
-  position: absolute;
   left: 120px;
   top: 150px;
   font-family: var(--font-family-inter);
@@ -166,7 +162,6 @@ html, body {
 }
 
 .text-7 {
-  position: absolute;
   left: 90px;
   top: 480px;
   font-family: var(--font-family-nats);
@@ -175,7 +170,6 @@ html, body {
 }
 
 .text-8 {
-  position: absolute;
   left: 90px;
   top: 520px;
   font-family: var(--font-family-nats);
@@ -184,12 +178,12 @@ html, body {
 }
 
 .text-9 {
-  position: absolute;
   left: 90px;
   top: 560px;
   font-family: var(--font-family-nats);
   font-size: 24px;
   color: #FFFFFF;
+  padding-top: 100px;
 }
 
 .rectangle-6-10 {
@@ -260,5 +254,28 @@ html, body {
     transform: scale(0.7);
     transform-origin: top left;
   }
+}
+
+.desktop-1-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      
+  justify-content: center;  
+  gap: 30px;                
+  position: relative;
+}
+
+.usage-row {
+  display: flex;
+  flex-direction: row;
+  gap: 40px; 
+  font-family: var(--font-family-nats);
+  font-size: 24px;
+  color: white;
+  padding-top: 30px;
+}
+
+.usage-text {
+  margin: 0;
 }
 </style>
