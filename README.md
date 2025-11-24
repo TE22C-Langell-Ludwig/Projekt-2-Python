@@ -16,7 +16,7 @@ Vårt mål är 150 användare inom 3 veckor med 90% gladda med servicen
 ``` python data.py```
 ## Backend Commands to run
 ``` cd Project```
-``` IMPORTANT : fix in school```
+``` python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000```
 
 ## Frontend Commands to run
 
